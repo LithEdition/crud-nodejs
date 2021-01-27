@@ -3,7 +3,7 @@
 Objetivo: Entender o funcionamento das rotas e aperfeiçoar o uso do sequelize.
 
 
-- TECNOLOGIAS:
+<h1>TECNOLOGIAS:</h1>
 
 - HTML5
 - CSS3
