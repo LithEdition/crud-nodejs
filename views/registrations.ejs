@@ -1,0 +1,53 @@
+<%- include('partials/header.ejs') %>
+    <div class="container">
+        <hr>
+        <div class="card">
+            <div class="card-header">
+                <hr>
+                <a href="/"><button class="btn btn-primary">Novo cadastro</button></a>
+                <hr>
+                <h1>CRUD - Visualizar</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Administrador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user=> { %>
+                            <tr>
+                                <th><%= user.id %></th>
+                                <th><%= user.name %></th>
+                                <th><%= user.email %></th>
+                                <th><%= user.admin %></th>
+                                <th>
+                                    <a href="/edit/<%= user.id %>"><button class="btn btn-success"">Editar</button></a> 
+                                    <form method="POST" action="/delete" onsubmit="checkDelete(event, this)" style="display: inline;">
+                                        <input type="hidden" name="id" value="<%= user.id %>">
+                                        <button class="btn btn-danger" type="submit">Excluir</button>
+                                    </form>
+                                </th>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<%- include('partials/footer.ejs') %>
+<script>
+    function checkDelete(event, form) {
+
+        event.preventDefault()
+        let decision = confirm('Você tem certeza que gostaria de continuar com essa ação?')
+        if (decision) {
+
+            form.submit()
+        }
+    }
+</script>
